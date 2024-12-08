@@ -1,0 +1,25 @@
+diff --git a/fetchDependencies b/fetchDependencies
+index 5c39fe96..9c85f64e 100755
+--- a/fetchDependencies
++++ b/fetchDependencies
+@@ -340,6 +340,7 @@ else
+ 	REPO_REV=$(cat "${EXT_REV_DIR}/${REPO_NAME}_repo_revision")
+ 
+ 	update_repo ${REPO_NAME} ${REPO_URL} ${REPO_REV}
++	if [ -f ../SPIRV-Cross.patch ]; then cat ../SPIRV-Cross.patch | patch -p2; fi
+ fi
+ 
+ 
+diff --git a/MoltenVK/MoltenVK/GPUObjects/MVKDescriptorSet.mm b/MoltenVK/MoltenVK/GPUObjects/MVKDescriptorSet.mm
+index 9108ef54..70e8de33 100644
+--- a/MoltenVK/MoltenVK/GPUObjects/MVKDescriptorSet.mm
++++ b/MoltenVK/MoltenVK/GPUObjects/MVKDescriptorSet.mm
+@@ -647,7 +647,7 @@ VkResult MVKDescriptorTypePool<DescriptorClass>::allocateDescriptor(VkDescriptor
+ 		return VK_SUCCESS;
+ 	} else if (dynamicAllocation) {
+ 		*pMVKDesc = new DescriptorClass();
+-		reportWarning(errRslt, "VkDescriptorPool exhausted pool of %zu %s descriptors. Allocating descriptor dynamically.", size(), mvkVkDescriptorTypeName(descType));
++		//reportWarning(errRslt, "VkDescriptorPool exhausted pool of %zu %s descriptors. Allocating descriptor dynamically.", size(), mvkVkDescriptorTypeName(descType));
+ 		return VK_SUCCESS;
+ 	} else {
+ 		*pMVKDesc = nullptr;

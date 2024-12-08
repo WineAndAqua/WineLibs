@@ -1,0 +1,11 @@
+--- configure-orig	2024-11-26 17:23:01
++++ configure	2024-11-26 17:27:37
+@@ -4081,7 +4081,7 @@ cc_default="gcc"
+ 
+ # toolchain
+ ar_default="ar"
+-cc_default="gcc"
++cc_default=${CC:="gcc"}
+ stdc_default="c17"
+ stdcxx_default="c++11"
+ cxx_default="g++"
