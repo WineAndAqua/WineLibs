@@ -1,0 +1,44 @@
+diff --git a/spirv_msl.cpp b/spirv_msl.cpp
+index 0a99b146..d333f876 100644
+--- a/External/SPIRV-Cross/spirv_msl.cpp
++++ b/External/SPIRV-Cross/spirv_msl.cpp
+@@ -12900,7 +12900,8 @@ string CompilerMSL::member_attribute_qualifier(const SPIRType &type, uint32_t in
+ 				return string(" [[") + builtin_qualifier(builtin) + "]]";
+ 
+ 			case BuiltInDrawIndex:
+-				SPIRV_CROSS_THROW("DrawIndex is not supported in MSL.");
++				//SPIRV_CROSS_THROW("member_attribute_qualifier: DrawIndex is not supported in MSL.");
++				return "";
+ 
+ 			default:
+ 				return "";
+@@ -16929,7 +16930,8 @@ string CompilerMSL::builtin_to_glsl(BuiltIn builtin, StorageClass storage)
+ 			SPIRV_CROSS_THROW("BaseInstance requires Metal 1.1 and Mac or Apple A9+ hardware.");
+ 		}
+ 	case BuiltInDrawIndex:
+-		SPIRV_CROSS_THROW("DrawIndex is not supported in MSL.");
++		//SPIRV_CROSS_THROW("builtin_to_glsl: DrawIndex is not supported in MSL.");
++		return "gl_DrawID";
+ 
+ 	// When used in the entry function, output builtins are qualified with output struct name.
+ 	// Test storage class as NOT Input, as output builtins might be part of generic type.
+@@ -17041,7 +17043,8 @@ string CompilerMSL::builtin_qualifier(BuiltIn builtin)
+ 	case BuiltInBaseInstance:
+ 		return "base_instance";
+ 	case BuiltInDrawIndex:
+-		SPIRV_CROSS_THROW("DrawIndex is not supported in MSL.");
++		//SPIRV_CROSS_THROW("builtin_qualifier: DrawIndex is not supported in MSL.");
++		return "vertex_id";
+ 
+ 	// Vertex function out
+ 	case BuiltInClipDistance:
+@@ -17258,7 +17261,8 @@ string CompilerMSL::builtin_type_decl(BuiltIn builtin, uint32_t id)
+ 	case BuiltInBaseInstance:
+ 		return "uint";
+ 	case BuiltInDrawIndex:
+-		SPIRV_CROSS_THROW("DrawIndex is not supported in MSL.");
++		//SPIRV_CROSS_THROW("builtin_type_decl: DrawIndex is not supported in MSL.");
++		return "uint";
+ 
+ 	// Vertex function out
+ 	case BuiltInClipDistance:
